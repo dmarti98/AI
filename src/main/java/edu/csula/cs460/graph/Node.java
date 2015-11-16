@@ -1,19 +1,27 @@
 package edu.csula.cs460.graph;
 
-public class Node<T> {
+public class Node<T> implements Comparable<Node>{
     private int id;
     private T data;
+    private int distance;
 
     public Node(int id) {
         this.id = id;
         this.data = null;
+        this.distance = 9999;
     }
     public Node(int id, T data) {
         this.id = id;
         this.data = data;
     }
 
-    public int getId() {
+    public int getDistance() {
+		return distance;
+	}
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
+	public int getId() {
         return id;
     }
 
@@ -51,4 +59,15 @@ public class Node<T> {
     public int hashCode() {
         return getId();
     }
+    
+	@Override
+	public int compareTo(Node o) {
+		if(this.getDistance() > o.getDistance()){
+			return 1;
+		}else if(this.getDistance() < o.getDistance()){
+			return -1;
+		}else{
+			return 0;
+		}		
+	}
 }
